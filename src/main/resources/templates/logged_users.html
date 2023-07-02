@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments :: style}"></head>
+<body>
+<div th:replace="fragments :: nav_bar"></div>
+
+<div class="container offset-sm-2 col-md-8 mt-lg-5">
+    <h2 class="m-lg-5">Welcome to our end to end web application security demo </h2>
+    <h2>Currently logged in users</h2>
+    <div th:switch="${users}" >
+        <div th:each="user : ${users}">
+            <p th:text="${user}">user</p>
+        </div>
+
+    </div>
+
+</div>
+</body>
+</html>

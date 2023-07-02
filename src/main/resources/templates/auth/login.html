@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{fragments :: style}"></head>
+
+<body>
+    <div th:replace="~{fragments :: nav_bar}"></div>
+    <div class="container container p-5 mt-5 card">
+
+
+    <div class="row mt-4">
+        <div th:if="${param.error}" class="col-sm-8">
+            <p class="alert alert-danger alert-dismissible fade show" role="alert">Invalid username or password</p>
+        </div>
+
+        <div th:if="${param.reset_success}" class="col-sm-8">
+            <p class="alert alert-info alert-dismissible fade show" role="alert">You have successfully reset your password, please log in here.</p>
+        </div>
+
+        <div th:if="${param.verified}" class="col-sm-8">
+            <p class="alert alert-info alert-dismissible fade show" role="alert">This account has already been verified,  please log in here.</p>
+        </div>
+        <div th:if="${param.valid}" class="col-sm-8">
+            <p class="alert alert-info alert-dismissible">Email verified successfully, please log in here.</p>
+        </div>
+
+        <!-- show logout warning alert when logged out. -->
+        <div th:if="${param.logout}" class="col-sm-8">
+            <p class="alert alert-warning">You have been logged out.</p>
+        </div>
+    </div>
+
+    <form th:action="@{/login}" method="post" class="px-4">
+        <h2 class="mb-4">User Login Form </h2>
+        <div class="mb-3 row">
+            <label for="email" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="email" name="email"
+                       required autofocus="autofocus">
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="password" class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-6">
+                <input type="password" class="form-control" name="password" id="password" required
+                       autofocus="autofocus">
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <button type="submit" name="login" id="login" class="btn btn-success"> Login</button>
+            <span> Not registered yet? <a href="#" th:href="@{/registration/registration-form}">Register.</a> </span>
+            <div class="vr"></div>
+            <span><a href="/" th:href="@{registration/forgot-password-request}">Forgot password.</a> </span>
+        </div>
+    </form>
+</div>
+</body>
+</html>

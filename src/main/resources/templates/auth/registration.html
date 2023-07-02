@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments :: style"></head>
+<body>
+<div th:replace="fragments :: nav_bar"></div>
+<div class="container p-5 mt-5 card">
+
+    <div class="row mt-2">
+        <div th:if="${param.success}" class=" alert alert-info">
+            Registration successful,
+            please check your email to complete your registration.
+        </div>
+        <h2 class="m-4">User Registration Form</h2>
+    </div>
+    <form th:action="@{/registration/register}" method="post" th:object="${user}" class="px-4" enctype="multipart/form-data">
+        <div class="mb-3 row">
+            <label for="firstName" class="col-sm-2 col-form-label">first Name</label>
+            <div class="col-sm-6">
+                <input type="text"  id="firstName" autofocus="autofocus"
+                       class="form-control" required name="firstName" th:field="*{firstName}" >
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="lastName" class="col-sm-2 col-form-label">Last Name</label>
+            <div class="col-sm-6">
+                <input type="text"  id="lastName" autofocus="autofocus"
+                       class="form-control" required name="lastName" th:field="*{lastName}" >
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="email" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-6">
+                <input type="text"  id="email" autofocus="autofocus"
+                       class="form-control" required name="email" th:field="*{email}" >
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="password" class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-6">
+                <input type="password"  id="password" autofocus="autofocus"
+                       class="form-control" required name="password" th:field="*{password}" >
+            </div>
+        </div>
+
+
+        <div class="mb-3 row">
+            <label   class="col-sm-2 col-form-label">image</label>
+            <div class="col-sm-6">
+                <input type="file" name="imageFile" accept="image/*"  class="form-control " >
+            </div>
+        </div>
+ <div>
+     <button type="submit" class="btn btn-success">Register</button>
+     <span>Registered already? <a href="/" th:href="@{/login}">
+         Login here.
+     </a></span>
+ </div>
+    </form>
+</div>
+
+</body>
+</html>

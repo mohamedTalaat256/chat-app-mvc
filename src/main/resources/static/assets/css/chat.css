@@ -1,0 +1,18 @@
+.message_media_image{
+    max-width: 100%;
+    object-fit: cover;
+    height: fit-content;
+    max-height: 100%;
+}
+.message_item{
+
+}
+
+.user_status_dot{
+        margin-left: -20px;
+        min-width: 12 px;
+        min-height: 12 px;
+        width: 12 px;
+        height: 12 px;
+        z-index: 999;
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head th:fragment="style">
+
+    <title th:text="${title}"></title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+
+   <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />-->
+    <link th:href="@{/assets/plugins/global/plugins.bundle.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/assets/plugins/custom/prismjs/prismjs.bundle.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/assets/css/style.bundle.css}" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" th:href="@{/assets/media/logos/favicon.ico}" />
+    <link th:href="@{/assets/css/chat.css}" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+
+<div th:fragment="nav_bar">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container container-fluid">
+            <a class="navbar-brand" href="#" th:href="@{/}">Chat</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" th:href="@{/users}">Users</a>
+                    </li>
+
+                    <li class="nav-item">
+                            <a class="nav-link" href="#" th:href="@{/loggedUsers}">Active Users</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav navbar-right">
+                    <li class="nav-item" sec:authorize="!isAuthenticated()">
+                        <a class="nav-link" href="#" th:href="@{/registration/registration-form}">Register</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="!isAuthenticated()">
+                        <a class="nav-link" href="#" th:href="@{/login}">Login</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="isAuthenticated()">
+                        <a class="nav-link" href="#" th:href="@{/logout}">Logout</a>
+                    </li>
+
+
+                    <li class="nav-item" sec:authorize="isAuthenticated()">
+                        <div class="d-flex align-items-center">
+                            <a href="#" class="font-weight-bold font-size-h6" th:text="${#authentication.principal.firstName}"></a>
+                            <input type="hidden" id="auth_user_id" th:value="${#authentication.principal.id}"/>
+                            <div class="symbol symbol-circle symbol-40 ml-3">
+                                <img alt="Pic" th:src="@{'/photos/'+ ${#authentication.principal.image}}" />
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+</body>
+</html>

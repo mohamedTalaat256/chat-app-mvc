@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<body>
+
+<div class="container offset-sm-3 col-md-8 mt-lg-5">
+    <!-- show errors if any . -->
+
+        <div class="row mt-2">
+            <div th:if="${param.invalid}" class="col-sm-8">
+                <p class="alert alert-danger">Invalid verification token</p>
+            </div>
+
+            <div th:if="${param.expired}" class="col-sm-8">
+                <p class="alert alert-info">This verification link has already expired.</p>
+            </div>
+        </div>
+    <a href="#" th:href="@{/}">Go to home page</a>
+</div>
+
+</body>
+</html>
