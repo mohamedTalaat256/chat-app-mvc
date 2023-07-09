@@ -30,7 +30,7 @@ public class MySimpleUrlAuthenticationSuccessHandler implements AuthenticationSu
         if (session != null) {
             LoggedUser user = new LoggedUser(authentication.getName(), activeUserStore);
             session.setAttribute("user", user);
-            response.sendRedirect("/");
+            response.sendRedirect("/users");
         }
     }
 }

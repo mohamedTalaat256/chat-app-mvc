@@ -1,7 +1,10 @@
 package com.mido.controller;
 
 
+import com.mido.dto.MessageNotificationDto;
 import com.mido.model.Message;
+import com.mido.model.User;
+import com.mido.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +21,9 @@ public class SocketChatController {
     @Autowired
     private SimpMessagingTemplate simpMessagingTemplate;
 
+    @Autowired
+    private UserService userService;
+
     @MessageMapping("/message")
     @SendTo("/chatroom/public")
     public Message receiveMessage(@Payload Message message){
@@ -25,9 +31,26 @@ public class SocketChatController {
     }
 
     @MessageMapping("/private-message")
-    public Message recMessage(@Payload Message message){
-        simpMessagingTemplate.convertAndSendToUser(message.getReceiverId().toString(),"/private",message);
-        return message;
+    public MessageNotificationDto recMessage(@Payload Message message){
+
+        User sender = userService.findById(message.getSenderId()).get();
+        String senderName = sender.getFirstName()+ " "+ sender.getLastName();
+        String senderImage = sender.getImage();
+
+        MessageNotificationDto notification = new MessageNotificationDto();
+        notification.setId(message.getId());
+        notification.setMessage(message.getMessage());
+        notification.setReceiverId(message.getReceiverId());
+        notification.setSenderId(message.getSenderId());
+        notification.setCreatedDate(message.getCreatedDate());
+        notification.setMedia(message.getMedia());
+        notification.setSenderName(senderName);
+        notification.setSenderImage(senderImage);
+
+        simpMessagingTemplate.convertAndSendToUser(message.getReceiverId().toString(),"/private",notification);
+
+
+        return notification;
     }
 
     @MessageMapping("/status-message")

@@ -66,6 +66,20 @@ public class ChatController {
         return new ResponseEntity<Object>(map, HttpStatus.OK);
     }
 
+    @PostMapping("update_all_to_seen")
+    public ResponseEntity<Object> updateAllToSeen(@RequestParam(name = "secondPersonId") Long secondPersonId){
+
+        String messages = chatService.updateAllToSeen(AuthData.getCurrentUserId(), secondPersonId);
+        ReturnUserDto returnUserDto = userService.findReturnUserById(secondPersonId);
+
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("messages", messages);
+        map.put("user_details", returnUserDto);
+
+
+        return new ResponseEntity<Object>(map, HttpStatus.OK);
+    }
+
     @PostMapping("send_chat_messages")
     public Message sendChatMessages(
             @RequestParam("message") String message,

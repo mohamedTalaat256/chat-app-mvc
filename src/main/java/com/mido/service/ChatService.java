@@ -92,8 +92,13 @@ public class ChatService {
     }
 
     public List<Message> getChatMessages(Long userId, Long secondPersonId){
-        chatRepo.updateUnreadToRead(userId, secondPersonId);
+        //chatRepo.updateUnreadToRead(userId, secondPersonId);
         return chatRepo.findBySenderIdIsAndReceiverIdIsOrReceiverIdIsAndSenderIdIsOrderByIdDesc(userId, secondPersonId, userId, secondPersonId);
+    }
+
+    public String updateAllToSeen(Long userId,Long secondPersonId){
+        chatRepo.updateUnreadToRead(userId, secondPersonId);
+        return "updated";
     }
 
 
