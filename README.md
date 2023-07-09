@@ -14,4 +14,4 @@ Realtime chat app created with spring MVC and websocket that provide conversatio
 ##
 
 #### App preview
-<img src="https://github.com/mohamedTalaat256/chat-app-mvc/blob/main/image.png">
+<img src="https://github.com/mohamedTalaat256/chat-app-mvc/blob/main/chat_mvc.png">
