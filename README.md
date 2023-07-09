@@ -9,7 +9,19 @@ Realtime chat app created with spring MVC and websocket that provide conversatio
 ##### 5- Hibernate Validatior
 ##### 6- Spring lombok
 ##### 7- Spring Websocket
+##### 8- jquery
+##### 9- socketjs
 
+
+
+### Features:
+##### 1- login & register
+##### 2- real time messaging
+##### 3- sharing media
+##### 4- active status indicator
+##### 5- seen status indicator
+##### 6- push notification
+##### 7- Spring Websocket
 
 ##
 
